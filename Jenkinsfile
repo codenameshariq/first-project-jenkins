@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE_NAME = 'devcodelearn/python-flask-application-using-jenkins'
+        DOCKER_IMAGE_NAME = 'codenameshariq/first-project-jenkins'
     }
 
     stages {
@@ -10,7 +10,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'github_pat_text', variable: 'GITHUB_PAT')]) {
                     git branch: 'main',
-                        url: "https://${GITHUB_PAT}@github.com/devcodelearn/Python-Flask-application-using-Jenkins.git"
+                        url: "https://${GITHUB_PAT}github.com/codenameshariq/first-project-jenkins.git"
                     //try
                 }
             }
@@ -37,8 +37,8 @@ pipeline {
                 script {
                     // Build Docker image
                     //dockerImage = docker.build("${DOCKER_IMAGE_NAME}:${env.BUILD_ID}")
-                    dockerImage = docker.build('devcodelearn/python-flask-application-using-jenkins')
-                    // sh 'sudo docker build -t devcodelearn/python-flask-application-using-jenkins .'
+                    dockerImage = docker.build('codenameshariq/first-project-jenkins')
+                    // sh 'sudo docker build -t codenameshariq/first-project-jenkins .'
                 }
             }
         }
@@ -64,10 +64,10 @@ pipeline {
                 script {
                     // Deploy the application as a Docker container
                     sh """
-                    docker stop python-flask-application-using-Jenkins || true && docker rm python-flask-application-using-Jenkins || true
-                    docker run -d -p 5000:5000 --name python-flask-application-using-jenkins ${DOCKER_IMAGE_NAME}:latest
+                    docker stop first-project-jenkins || true && docker rm python-flask-application-using-Jenkins || true
+                    docker run -d -p 5000:5000 --name first-project-jenkins ${DOCKER_IMAGE_NAME}:latest
                     """
-                    //docker run -d -p 5000:5000 --name python-flask-application-using-jenkins devcodelearn/python-flask-application-using-jenkins:latest
+                    //docker run -d -p 5000:5000 --name first-project-jenkins codenameshariq/first-project-jenkins:latest
                     
 
                 }
