@@ -10,7 +10,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'github_pat_text', variable: 'GITHUB_PAT')]) {
                     git branch: 'main',
-                        url: "https://${GITHUB_PAT}github.com/codenameshariq/first-project-jenkins.git"
+                        url: "https://${GITHUB_PAT}@github.com/codenameshariq/first-project-jenkins.git"
                     //try
                 }
             }
